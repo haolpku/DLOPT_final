@@ -41,7 +41,7 @@ def plot_performance(losses, accuracies, optimizers, save_path):
     plt.grid(True)
     plt.legend(fontsize=12)
     plt.tight_layout()
-    plt.savefig(os.path.join(save_path, 'loss_comparison.png'))
+    plt.savefig(os.path.join(save_path, 'loss_comparison_2.png'))
     plt.close()
 
     # 绘制准确度曲线
@@ -54,7 +54,7 @@ def plot_performance(losses, accuracies, optimizers, save_path):
     plt.grid(True)
     plt.legend(fontsize=12)
     plt.tight_layout()
-    plt.savefig(os.path.join(save_path, 'accuracy_comparison.png'))
+    plt.savefig(os.path.join(save_path, 'accuracy_comparison_2.png'))
     plt.close()
 
 

@@ -54,7 +54,7 @@ class LogisticRegressionModel(nn.Module):
         return torch.sigmoid(self.linear(x))
 
 optimizers = ["SGD", "MomentumSGD", "Adagrad", "RMSProp", "Adam"]
-epochs = 100
+epochs = 200
 # 准备记录每种优化器的性能
 losses = {k: [] for k in optimizers}
 accuracies = {k: [] for k in optimizers}
@@ -65,18 +65,16 @@ for opt_name in optimizers:
     criterion = nn.BCELoss()
 
     # 针对当前模型重新实例化优化器
-    
     if opt_name == "SGD":
         optimizer = SGDOptimizer(model.parameters(), lr=0.001)
     elif opt_name == "MomentumSGD":
         optimizer = MomentumSGDOptimizer(model.parameters(), lr=0.001, momentum=0.9)
     elif opt_name == "Adagrad":
-        optimizer = AdagradOptimizer(model.parameters(), lr=0.001)
+        optimizer = AdagradOptimizer(model.parameters(), lr=0.01)
     elif opt_name == "RMSProp":
         optimizer = RMSPropOptimizer(model.parameters(), lr=0.001, alpha=0.99)
     elif opt_name == "Adam":
         optimizer = AdamOptimizer(model.parameters(), lr=0.001, beta1=0.9, beta2=0.999)
-    
     '''
     if opt_name == "SGD":
         optimizer = optim.SGD(model.parameters(), lr=0.001)
