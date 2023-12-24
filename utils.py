@@ -148,24 +148,24 @@ def plot_optimization_comparison(histories, optimize_fn, plot_type='contour', sa
         print(f"The optimization paths GIF has been saved at '{gif_path}'.")
     return ani
     
-def plot_function_value(histories, optimizers, save_path):
+def plot_function_value(histories, minimal, optimizers, save_path):
     """
-    分别绘制每种优化器的函数值下降曲线，并将图表保存到指定路径。
+    分别绘制每种优化器的误差下降曲线，并将图表保存到指定路径。
 
     :param histories: 函数字典，键为优化器名称，值为函数值列表。
+    :param minimal: 函数的全局极小值。
     :param optimizers: 优化器名称列表。
     :param save_path: 保存图表的路径。
     """
     # 设置图表样式
-    markers = ['o', 's', '^', 'D', '*']  # 不同的标记符号
     colors = ['b', 'g', 'r', 'c', 'm']   # 不同的颜色
 
     # 绘制函数值曲线
     plt.figure(figsize=(10, 5))
     for i, opt_name in enumerate(optimizers):
-        plt.plot(histories[opt_name], color=colors[i], marker=markers[i], linestyle='-', label=f'{opt_name} Function Value')
-    plt.xlabel('Iteration', fontsize=14)
-    plt.ylabel('Function Value', fontsize=14)
+        plt.semilogy([abs((h-minimal)/minimal) for h in histories[opt_name]], color=colors[i], linestyle='-', label=f'{opt_name}')
+    plt.ylabel('$\dfrac{|h(x)-h^*|}{h^*}$', fontsize=14)
+    plt.title('Relative Error Comparison', fontsize=16)
     plt.title('Function Value Comparison', fontsize=16)
     plt.grid(True)
     plt.legend(fontsize=12)
