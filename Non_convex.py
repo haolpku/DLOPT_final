@@ -108,6 +108,7 @@ if __name__ == '__main__':
     ## 优化非凸有极小值的函数g(x)
     init_point = [0., -2.]
     num_steps = 500
+    minimal = g(-3.3876190584754156, -3.3876190584754156)
 
     # lr = 0.01
     lr = 0.01
@@ -116,7 +117,7 @@ if __name__ == '__main__':
     seed_everything()
     for optimizer_name in optimizers:
         histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(g, optimizer_name, lr, num_steps, init_point)
-    plot_function_value(losses, optimizers, 'Result/Non_convex')
+    plot_function_value(losses, minimal, optimizers, 'Result/Non_convex')
     plot_optimization_comparison(histories, g, plot_type='contour', save_gif=True, gif_path='Result/Non_convex/optimization_g_ct_lr001.gif')
 
     # AdaGrad的lr = 0.05，其余lr = 0.01
@@ -129,10 +130,10 @@ if __name__ == '__main__':
             histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(g, optimizer_name, lr_AdaGrad, num_steps, init_point)
         else:
             histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(g, optimizer_name, lr, num_steps, init_point)
-    plot_function_value(losses, optimizers, 'Result/Non_convex')
+    plot_function_value(losses, minimal, optimizers, 'Result/Non_convex')
     plot_optimization_comparison(histories, g, plot_type='contour', save_gif=True, gif_path='Result/Non_convex/optimization_g_ct_lr001_005.gif')
 
-    # AdaGrad的lr = 0.1，其余lr = 0.01
+    # AdaGrad的lr = 0.15，其余lr = 0.01
     histories = {}
     losses = {}
     lr_AdaGrad = 0.1
@@ -142,5 +143,5 @@ if __name__ == '__main__':
             histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(g, optimizer_name, lr_AdaGrad, num_steps, init_point)
         else:
             histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(g, optimizer_name, lr, num_steps, init_point)
-    plot_function_value(losses, optimizers, 'Result/Non_convex')
-    plot_optimization_comparison(histories, g, plot_type='contour', save_gif=True, gif_path='Result/Non_convex/optimization_g_ct_lr001_01.gif')
+    plot_function_value(losses, minimal, optimizers, 'Result/Non_convex')
+    plot_optimization_comparison(histories, g, plot_type='contour', save_gif=True, gif_path='Result/Non_convex/optimization_g_ct_lr001_015.gif')
