@@ -61,6 +61,8 @@ def optimize_function_with_optimizers(optimize_fn, optimizer_name, lr=0.01, num_
     # 记录优化过程中的参数值
     history = []
     losses = []
+    history.append([p.detach().clone().cpu().numpy() for p in params])
+    losses.append(optimize_fn(params[0][0], params[0][1]).item())
     for i in range(num_iterations):
         optimizer.zero_grad()
         # 展开 params 并传递给优化函数
