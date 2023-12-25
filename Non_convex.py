@@ -89,21 +89,21 @@ if __name__ == '__main__':
     ## 优化没有极小值点的函数h(x)
     # lr = 0.01
     lr = 0.01
-    init_point = [0.1, 0.1]
+    init_point = [-0.1, 0.001]
     num_steps = 50
     histories = {}
     losses = {}
     for optimizer_name in optimizers:
         histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(h, optimizer_name, lr, num_steps, init_point)
     plot_optimization_comparison(histories, h, plot_type='surface', save_gif=True, gif_path='Result/Non_convex/optimization_h_sf_lr001.gif')
-    # lr = 0.02
-    lr = 0.02
+    # lr = 0.1
+    lr = 0.1
     histories = {}
     losses = {}
     seed_everything()
     for optimizer_name in optimizers:
         histories[optimizer_name], losses[optimizer_name] = optimize_function_with_optimizers(h, optimizer_name, lr, num_steps, init_point)
-    plot_optimization_comparison(histories, h, plot_type='surface', save_gif=True, gif_path='Result/Non_convex/optimization_h_sf_lr002.gif')
+    plot_optimization_comparison(histories, h, plot_type='surface', save_gif=True, gif_path='Result/Non_convex/optimization_h_sf_lr01.gif')
 
     ## 优化非凸有极小值的函数g(x)
     init_point = [0., -2.]
