@@ -164,7 +164,7 @@ def plot_function_value(histories, minimal, optimizers, save_path):
     plt.figure(figsize=(10, 5))
     for i, opt_name in enumerate(optimizers):
         plt.semilogy([abs((h-minimal)/minimal) for h in histories[opt_name]], color=colors[i], linestyle='-', label=f'{opt_name}')
-    plt.ylabel('$\dfrac{|h(x)-h^*|}{h^*}$', fontsize=14)
+    plt.ylabel('$\dfrac{|g(x)-g^*|}{g^*}$', fontsize=14)
     plt.title('Relative Error Comparison', fontsize=16)
     plt.title('Function Value Comparison', fontsize=16)
     plt.grid(True)
